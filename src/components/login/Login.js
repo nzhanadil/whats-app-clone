@@ -22,7 +22,7 @@ const Login = () => {
         <div className='login__container'>
             <img src='https://upload.wikimedia.org/wikipedia/commons/a/a9/Whatsapp_logo.jpg' alt="" />
             <div className='login__text'>
-                <h1>Sigh in to WhatsApp</h1>
+                <h1>Sign in to WhatsApp</h1>
             </div>
 
             <Button type='submit' onClick={signIn}>
