@@ -1,15 +1,27 @@
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Chat from './components/chat/Chat';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import Login from './components/login/Login';
 
 function App() {
+  const [user, setUser] = useState(null)
+
   return (
-    // BEM naming convention
     <div className="app">
-      <div className='app__body'>
-          <Sidebar />
-          <Chat />
-      </div>
+      {!user ? (
+        <Login />
+      ): (
+        <div className='app__body'>
+          <Router>
+            <Sidebar />
+            <Routes>
+              <Route path='/rooms/:roomId' element={<Chat />} />
+            </Routes>
+          </Router>
+        </div>
+      )}
     </div>
   );
 }
