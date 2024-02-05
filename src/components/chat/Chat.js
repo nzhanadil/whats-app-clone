@@ -2,14 +2,21 @@ import React from 'react'
 import './Chat.css'
 import { Avatar, IconButton } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { AttachFile, MoreVert, SearchOutlined } from '@mui/icons-material'
+import { AttachFile, InsertEmoticon, Mic, MoreVert, SearchOutlined } from '@mui/icons-material'
 
 const Chat = () => {
+    const [input, setInput] = useState('')
     const [seed, setSeed] = useState('')
 
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 5000))
     }, [])
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        console.log(input)
+        setInput('')
+    }
 
     return (
     <div className='chat'>
@@ -44,7 +51,14 @@ const Chat = () => {
         </div>
 
         <div className='chat_footer'>
+            <InsertEmoticon />
+    
+            <form>
+                <input type='text' placeholder='Type a message' value={input} onChange={e => setInput(e.target.value)}/>
+                <button onClick={sendMessage} type='submit'>Send a message</button>
+            </form>
 
+            <Mic />
         </div>
     </div>
     )
